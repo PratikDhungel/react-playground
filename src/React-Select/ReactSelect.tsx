@@ -1,6 +1,8 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import Select from 'react-select';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 interface Option {
   value: string;
@@ -13,33 +15,39 @@ const options: Option[] = [
   { value: '003', label: 'Biratnagar' },
 ];
 
-const ReactSelect = () => {
-  const { register, errors, control, handleSubmit } = useForm();
+const scheme = yup.object().shape({
+  fullName: yup.string().required('This field is required'),
+  email: yup.string().required('This field is required').email('Invalid Email'),
+});
 
-  // const control = () => {
-  //   console.log('This is ground control to Major Tom');
-  // };
+const ReactSelect = () => {
+  const { register, errors, control, handleSubmit } = useForm({
+    resolver: yupResolver(scheme),
+  });
 
   const submitForm = (data: any) => {
     console.log(data);
-    data.cityMultiSelect.forEach((option: any) => {
-      console.log(option.value);
-    });
+  };
+
+  const handleErrors = (errors: any) => {
+    console.log(errors);
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit(submitForm)}>
+      <form onSubmit={handleSubmit(submitForm, handleErrors)}>
+        <input name='fullName' type='text' ref={register} />
+        <div>{errors?.fullName?.message && errors.fullName?.message}</div>
+        <input name='email' type='text' ref={register} />
+        <div>{errors?.email?.message && errors.email?.message}</div>
         <Controller
           as={Select}
           control={control}
-          // isMulti
+          isMulti
           name='cityMultiSelect'
           options={options}
           className='basic-multi-select multi-select'
         />
-        {/* <Select name='city' isMulti options={options} className='basic-multi-select multi-select' ref={register} /> */}
-        <input name='firstName' type='text' ref={register} />
         <button type='submit'>Submit</button>
       </form>
     </div>
