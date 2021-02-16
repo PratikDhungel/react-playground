@@ -26,20 +26,20 @@ const ReactSelect = () => {
   });
 
   const submitForm = (data: any) => {
-    console.log(data);
+    console.table(data);
   };
 
   const handleErrors = (errors: any) => {
-    console.log(errors);
+    console.table(errors);
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit(submitForm, handleErrors)}>
         <input name='fullName' type='text' ref={register} />
-        <div>{errors?.fullName?.message && errors.fullName?.message}</div>
+        <div>{errors.fullName?.message}</div>
         <input name='email' type='text' ref={register} />
-        <div>{errors?.email?.message && errors.email?.message}</div>
+        <div>{errors.email?.message}</div>
         <Controller
           as={Select}
           control={control}
