@@ -1,10 +1,12 @@
 import React from 'react';
-import ReactSelect from './React-Select/ReactSelect';
+import NavBar from './NavBar/NavBar';
+// import ReactSelect from './React-Select/ReactSelect';
 
 function App() {
   return (
     <div className='App'>
-      <ReactSelect />
+      {/* <ReactSelect /> */}
+      <NavBar />
     </div>
   );
 }

@@ -13,3 +13,13 @@ code {
 .multi-select {
   width: 50%;
 }
+
+.nav-links-spacing {
+  margin: 0 auto !important;
+}
+
+@media (min-width: 768px) {
+  .nav-links-spacing {
+    margin-right: 3em !important;
+  }
+}
