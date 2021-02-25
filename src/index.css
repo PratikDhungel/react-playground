@@ -30,3 +30,8 @@ code {
     margin-right: 3em !important;
   }
 }
+
+.columns {
+  /* border: 1px solid red; */
+  padding: 0.5em !important;
+}
