@@ -22,22 +22,28 @@ code {
 }
 
 .cards-container {
-  margin-top: 2em !important;
-  padding: 0 2em !important;
+  margin-top: 1em !important;
+  padding: 0 6em !important;
 }
 
 .nav-container {
-  padding: 0.5em 2em !important;
-  padding-left: 2.5em !important;
+  padding: 0.5em 6em !important;
 }
 
 .nav-links-spacing {
   margin: 0 auto !important;
+  padding: 0 !important;
 }
 
 .nav-links-styling {
   font-size: 1rem;
   color: white !important;
+}
+
+.homepage-buttons-container {
+  padding: 0.5em 2em !important;
+  padding-top: 2em !important;
+  padding-left: 6em !important;
 }
 
 @media (min-width: 768px) {
@@ -46,11 +52,15 @@ code {
   }
   .nav-links-spacing:last-of-type {
     margin-right: 0 !important;
-    padding-right: 0.5 !important;
   }
 }
 
 .columns {
   /* border: 1px solid red; */
-  padding: 0.5em !important;
+  padding: 1em !important;
+  padding-left: 0 !important;
+}
+
+.columns:last-of-type {
+  padding-right: 0 !important;
 }
