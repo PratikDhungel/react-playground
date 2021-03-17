@@ -25,6 +25,10 @@ code {
   margin: 0 auto !important;
 }
 
+.nav-links-styling {
+  color: white !important;
+}
+
 @media (min-width: 768px) {
   .nav-links-spacing {
     margin-right: 3em !important;
