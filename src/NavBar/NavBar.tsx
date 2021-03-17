@@ -8,7 +8,7 @@ const NavBar = () => {
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   return (
-    <Navbar collapseOnSelect expand='md' bg='dark' variant='dark'>
+    <Navbar collapseOnSelect expand='md' bg='dark' variant='dark' className='nav-container'>
       <Navbar.Brand href='#home'>Rent Out</Navbar.Brand>
       <Navbar.Toggle aria-controls='responsive-navbar-nav' />
       <Navbar.Collapse id='responsive-navbar-nav'>

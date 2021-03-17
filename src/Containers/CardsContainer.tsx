@@ -3,7 +3,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 
 const CardsContainer = () => {
   return (
-    <Container fluid style={{ marginTop: '2em' }}>
+    <Container fluid className='cards-container'>
       <Row noGutters>
         <Col className='columns' md={4}>
           <Card>

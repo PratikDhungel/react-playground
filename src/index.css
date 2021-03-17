@@ -21,17 +21,32 @@ code {
   width: 50%;
 }
 
+.cards-container {
+  margin-top: 2em !important;
+  padding: 0 2em !important;
+}
+
+.nav-container {
+  padding: 0.5em 2em !important;
+  padding-left: 2.5em !important;
+}
+
 .nav-links-spacing {
   margin: 0 auto !important;
 }
 
 .nav-links-styling {
+  font-size: 1rem;
   color: white !important;
 }
 
 @media (min-width: 768px) {
   .nav-links-spacing {
     margin-right: 3em !important;
+  }
+  .nav-links-spacing:last-of-type {
+    margin-right: 0 !important;
+    padding-right: 0.5 !important;
   }
 }
 
