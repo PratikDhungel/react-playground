@@ -64,3 +64,7 @@ code {
 .columns:last-of-type {
   padding-right: 0 !important;
 }
+
+.close > span {
+  font-size: 1.25em;
+}
