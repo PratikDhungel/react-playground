@@ -68,3 +68,7 @@ code {
 .close > span {
   font-size: 1.25em;
 }
+
+.form-row {
+  margin-bottom: 1em;
+}

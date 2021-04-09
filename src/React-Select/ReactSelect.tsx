@@ -21,32 +21,34 @@ const scheme = yup.object().shape({
 });
 
 const ReactSelect = () => {
-  const { register, errors, control, handleSubmit } = useForm({
+  const {
+    register,
+    formState: { errors },
+    control,
+    handleSubmit,
+  } = useForm({
     resolver: yupResolver(scheme),
   });
 
   const submitForm = (data: any) => {
-    console.table(data);
+    console.log(data);
   };
 
   const handleErrors = (errors: any) => {
-    console.table(errors);
+    console.log(errors);
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit(submitForm, handleErrors)}>
-        <input name='fullName' type='text' ref={register} />
+        <input {...register('fullName')} type='text' placeholder='Full Name' />
         <div>{errors.fullName?.message}</div>
-        <input name='email' type='text' ref={register} />
+        <input {...register('email')} type='text' placeholder='Email' />
         <div>{errors.email?.message}</div>
         <Controller
-          as={Select}
           control={control}
-          isMulti
           name='cityMultiSelect'
-          options={options}
-          className='basic-multi-select multi-select'
+          render={({ field }) => <Select {...field} isMulti options={options} className='basic-multi-select multi-select' />}
         />
         <button type='submit'>Submit</button>
       </form>
