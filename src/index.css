@@ -72,3 +72,7 @@ code {
 .form-row {
   margin-bottom: 1em;
 }
+
+.select-list-error-icon {
+  background-position: right 1.25em center !important;
+}
