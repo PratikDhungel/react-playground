@@ -1,44 +1,99 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { Button, Modal, Form, Col, FormGroup } from 'react-bootstrap';
+import { Button, Modal, Form, Col } from 'react-bootstrap';
 import { yupResolver } from '@hookform/resolvers/yup';
+
+const apiBaseURL = `http://localhost:5000/api/v1/`;
+const imagesFolderPath = `/Users/pratikdhungel/Code/react-playground/images`;
+
+const defaultFormValues = {
+  manufacturer: '',
+  modelName: '',
+  year: '',
+  distance: '',
+  vehicleImage1: '',
+};
+
+const defaultFormStates = {
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
+};
 
 const AddNewRentalModal = ({ ...props }) => {
   const { showNewRentalModal, setShowNewRentalModal } = props;
+  const [formStates, setFormStates] = useState({ defaultFormStates });
 
   const resolverScheme = yup.object().shape({
     manufacturer: yup.string().required('Manufacturer is required'),
     modelName: yup.string().required('Model Name is required'),
-    distance: yup.string().required('Distance is required'),
+    year: yup
+      .string()
+      .notRequired()
+      .test('Number only', 'Year should be a number', (value: any) => {
+        const numberRegex = /^\d*\.?\d*$/;
+        if (numberRegex.test(value)) {
+          return true;
+        }
+        return false;
+      })
+      .test('Year too old', 'Should be greater than 1950', (value: any) => {
+        console.log(value, !value);
+        const numValue = Number(value);
+        if (!value || numValue > 1950) {
+          return true;
+        }
+        return false;
+      }),
+    distance: yup
+      .string()
+      .required('Distance is required')
+      .test('Number only', 'Distance should be a number', (value: any) => {
+        const numberRegex = /^\d*\.?\d*$/;
+        if (numberRegex.test(value)) {
+          return true;
+        }
+        return false;
+      }),
     vehicleImage1: yup.mixed().test('Empty', 'Image is required', (value: any) => {
-      console.log(value);
-      if (value.length === 0) {
-        return false;
+      if (value.length > 0) {
+        return true;
       }
-      return true;
+      return false;
     }),
-    vehicleImage2: yup.mixed().test('Empty', 'Image is required', (value: any) => {
-      console.log(value);
-      if (value.length === 0) {
-        return false;
-      }
-      return true;
-    }),
+    // vehicleImage2: yup.mixed().test('Empty', 'Image is required', (value: any) => {
+    //   console.log(value);
+    //   if (value.length === 0) {
+    //     return false;
+    //   }
+    //   return true;
+    // }),
   });
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(resolverScheme) });
 
-  const submitNewRentalForm = (data: any) => {
+  const submitNewRentalForm = async (data: any) => {
     console.log(data);
+    const fileName = data.vehicleImage1[0].name;
+    const filePath = `${imagesFolderPath}/${fileName}`;
+    console.log(filePath);
+
+    // const requestData = ;
   };
 
   const handleErrors = (errors: any) => {
-    console.log(errors.vehicleImage1?.message);
+    console.log(errors);
+  };
+
+  const hideModal = () => {
+    setShowNewRentalModal(!showNewRentalModal);
+    reset(defaultFormValues);
   };
 
   return (
@@ -46,7 +101,7 @@ const AddNewRentalModal = ({ ...props }) => {
       size='lg'
       show={showNewRentalModal}
       keyboard={true}
-      onHide={() => setShowNewRentalModal(!showNewRentalModal)}
+      onHide={() => hideModal()}
       centered
       // dialogClassName='homepage-filters-modal'
     >
@@ -83,7 +138,8 @@ const AddNewRentalModal = ({ ...props }) => {
           <Form.Row>
             <Col>
               <Form.Label>Manufactured Year</Form.Label>
-              <Form.Control placeholder='2016' {...register('year')}></Form.Control>
+              <Form.Control placeholder='2016' {...register('year')} isInvalid={!!errors.year}></Form.Control>
+              <Form.Control.Feedback type='invalid'>{errors.year?.message}</Form.Control.Feedback>
             </Col>
             <Col>
               <Form.Label>Total Distance (kms)</Form.Label>
@@ -102,7 +158,7 @@ const AddNewRentalModal = ({ ...props }) => {
               />
             </Col>
           </Form.Row>
-          <Form.Row>
+          {/* <Form.Row>
             <Col sm={6}>
               <Form.File
                 id='vehicle-image-2'
@@ -112,7 +168,7 @@ const AddNewRentalModal = ({ ...props }) => {
               />
               <Form.Control.Feedback type='invalid'>{errors.vehicleImage2?.message}</Form.Control.Feedback>
             </Col>
-          </Form.Row>
+          </Form.Row> */}
         </Modal.Body>
         <Modal.Footer>
           <Button className='btn btn-filter-modal__save-btn' type='submit'>
