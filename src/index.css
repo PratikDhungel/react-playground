@@ -76,3 +76,8 @@ code {
 .select-list-error-icon {
   background-position: right 1.25em center !important;
 }
+
+.spinner-container {
+  padding: 5em 0;
+  margin: 0 auto;
+}
