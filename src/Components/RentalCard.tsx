@@ -13,15 +13,15 @@ import { Col, Card } from 'react-bootstrap';
 const RentalCard = ({ ...props }) => {
   const { manufacturer, modelName, distance, thumbnails } = props;
   console.log(thumbnails);
-  const [currentImagePosition, setcurrentImagePosition] = useState<number>(0);
+  const [currentImagePosition, setCurrentImagePosition] = useState<number>(0);
   const lengthOfSlides: number = thumbnails.length;
 
   const nextSlide = (): void => {
-    setcurrentImagePosition(currentImagePosition === lengthOfSlides - 1 ? 0 : currentImagePosition + 1);
+    setCurrentImagePosition(currentImagePosition === lengthOfSlides - 1 ? 0 : currentImagePosition + 1);
   };
 
   const prevSlide = (): void => {
-    setcurrentImagePosition(currentImagePosition === 0 ? lengthOfSlides - 1 : currentImagePosition - 1);
+    setCurrentImagePosition(currentImagePosition === 0 ? lengthOfSlides - 1 : currentImagePosition - 1);
   };
 
   return (
