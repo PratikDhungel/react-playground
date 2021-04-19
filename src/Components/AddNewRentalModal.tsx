@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 const apiBaseURL = `http://localhost:5000/api/v1/`;
 const addNewRentalEndpoint = `rentals/addNewRental`;
-const imagesFolderPath = `/Users/pratikdhungel/Code/react-playground/images`;
+const imagesFolderPath = `images`;
 
 const defaultFormValues = {
   manufacturer: '',
