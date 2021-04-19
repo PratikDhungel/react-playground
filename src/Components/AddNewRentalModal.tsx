@@ -169,19 +169,27 @@ const AddNewRentalModal = ({ ...props }) => {
               </Col>
               <Col>
                 <Form.Label>Model Name</Form.Label>
-                <Form.Control placeholder='FZ' {...register('modelName')} isInvalid={!!errors.modelName}></Form.Control>
+                <Form.Control
+                  placeholder='E.g. MT-09'
+                  {...register('modelName')}
+                  isInvalid={!!errors.modelName}
+                ></Form.Control>
                 <Form.Control.Feedback type='invalid'>{errors.modelName?.message}</Form.Control.Feedback>
               </Col>
             </Form.Row>
             <Form.Row>
               <Col>
                 <Form.Label>Manufactured Year</Form.Label>
-                <Form.Control placeholder='2016' {...register('year')} isInvalid={!!errors.year}></Form.Control>
+                <Form.Control placeholder='E.g. 2016' {...register('year')} isInvalid={!!errors.year}></Form.Control>
                 <Form.Control.Feedback type='invalid'>{errors.year?.message}</Form.Control.Feedback>
               </Col>
               <Col>
                 <Form.Label>Total Distance (kms)</Form.Label>
-                <Form.Control placeholder='23442' {...register('distance')} isInvalid={!!errors.distance}></Form.Control>
+                <Form.Control
+                  placeholder='E.g. 23442'
+                  {...register('distance')}
+                  isInvalid={!!errors.distance}
+                ></Form.Control>
                 <Form.Control.Feedback type='invalid'>{errors.distance?.message}</Form.Control.Feedback>
               </Col>
             </Form.Row>
