@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { Button, Modal, Form, Col, Spinner } from 'react-bootstrap';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Loading from './Common/Loading';
 
 const apiBaseURL = `http://localhost:5000/api/v1/`;
 const addNewRentalEndpoint = `rentals/addNewRental`;
@@ -139,10 +140,11 @@ const AddNewRentalModal = ({ ...props }) => {
         <Modal.Title>Add New Rental</Modal.Title>
       </Modal.Header>
       {isLoading ? (
-        <div className='spinner-container' style={{ height: `${newContainerHeight}px` }}>
-          <Spinner animation='border' />
-        </div>
+        <Loading newContainerHeight={newContainerHeight} />
       ) : (
+        // <div className='spinner-container' style={{ height: `${newContainerHeight}px` }}>
+        //   <Spinner animation='border' />
+        // </div>
         <Form onSubmit={handleSubmit(submitNewRentalForm, handleErrors)} ref={rentalFormRef}>
           <Modal.Body>
             <Form.Row>

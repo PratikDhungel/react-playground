@@ -12,7 +12,6 @@ import { Col, Card } from 'react-bootstrap';
 
 const RentalCard = ({ ...props }) => {
   const { manufacturer, modelName, distance, thumbnails } = props;
-  console.log(thumbnails);
   const [currentImagePosition, setCurrentImagePosition] = useState<number>(0);
   const lengthOfSlides: number = thumbnails.length;
 

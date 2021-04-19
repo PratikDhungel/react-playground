@@ -78,8 +78,9 @@ code {
 }
 
 .spinner-container {
-  padding: 5em 0;
-  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .rental-card {
@@ -90,13 +91,13 @@ code {
   opacity: 1;
   height: 300px;
   width: 100%;
-  transition: 1s ease;
+  transition: 0.7s ease;
 }
 
 .slide {
   opacity: 0;
   transform: scale(0.9);
-  transition: 1s ease;
+  transition: 0.7s ease;
 }
 
 .arrow-btn {
@@ -122,8 +123,4 @@ img {
   object-fit: cover;
   object-position: center;
   border-radius: 10px;
-}
-
-.imagee {
-  background: url('./images/1.jpg');
 }
