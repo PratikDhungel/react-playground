@@ -33,7 +33,7 @@ const AddNewRentalModal = ({ ...props }) => {
   const { rentalData, setRentalData, cardsContainerStates, setCardContainerStates } = useRentalCardsContext();
   const [formStates, setFormStates] = useState(defaultFormStates);
   const { isLoading, isSuccess, isError } = formStates;
-  const [newContainerHeight, setNewContainerHeight] = useState<number>();
+  const [containerHeight, setContainerHeight] = useState<number>();
 
   const rentalFormRef = useRef<HTMLFormElement>(null);
 
@@ -90,10 +90,10 @@ const AddNewRentalModal = ({ ...props }) => {
     reset(defaultFormValues);
   };
 
-  const setContainerHeight = () => {
+  const assignLaderContainerHeight = () => {
     let formContainerHeight: number | undefined;
     formContainerHeight = rentalFormRef?.current?.getBoundingClientRect().height;
-    setNewContainerHeight(formContainerHeight);
+    setContainerHeight(formContainerHeight);
   };
 
   return (
@@ -101,7 +101,7 @@ const AddNewRentalModal = ({ ...props }) => {
       size='lg'
       show={showNewRentalModal}
       keyboard={true}
-      onEntered={() => setContainerHeight()}
+      onEntered={() => assignLaderContainerHeight()}
       onHide={() => hideModal()}
       centered
       // dialogClassName='homepage-filters-modal'
@@ -110,7 +110,7 @@ const AddNewRentalModal = ({ ...props }) => {
         <Modal.Title>Add New Rental</Modal.Title>
       </Modal.Header>
       {isLoading ? (
-        <Loading newContainerHeight={newContainerHeight} />
+        <Loading containerHeight={containerHeight} />
       ) : (
         <Form onSubmit={handleSubmit(submitNewRentalForm, handleErrors)} ref={rentalFormRef}>
           <Modal.Body>

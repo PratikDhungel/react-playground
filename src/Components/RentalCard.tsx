@@ -30,15 +30,12 @@ const RentalCard = ({ ...props }) => {
         <div className='rental-card-details-container'>
           <Row>
             <Col className='icon-container' sm={4}>
-              <FaIndustry className='icons' />
               <p className='detail-text'>{manufacturer}</p>
             </Col>
             <Col className='icon-container' sm={4}>
-              <FaMotorcycle className='icons' />
               <p className='detail-text'>{modelName}</p>
             </Col>
             <Col className='icon-container' sm={4}>
-              <FaRoad className='icons' />
               <p className='detail-text'>{distance} kms</p>
             </Col>
           </Row>

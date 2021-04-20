@@ -2,9 +2,9 @@ import React from 'react';
 import { Spinner } from 'react-bootstrap';
 
 const Loading = ({ ...props }) => {
-  const { newContainerHeight } = props;
+  const { containerHeight } = props;
   return (
-    <div className='spinner-container' style={{ height: `${newContainerHeight}px` }}>
+    <div className='spinner-container' style={{ height: `${containerHeight}px` }}>
       <Spinner animation='border' />
     </div>
   );
