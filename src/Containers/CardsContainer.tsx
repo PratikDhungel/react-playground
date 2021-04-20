@@ -20,7 +20,6 @@ const CardsContainer = () => {
       // console.log(responseData);
       setRentalData(responseData);
       setCardContainerStates({ ...cardsContainerStates, isLoading: false });
-      // console.log(rentalData);
     } catch (err) {
       console.log(err);
     }

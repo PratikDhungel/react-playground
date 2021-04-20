@@ -2,14 +2,6 @@ import React, { useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { Col, Card } from 'react-bootstrap';
 
-// import filePath from '../images/1.jpg';
-
-// interface RentalCardInfoProps {
-//   id: string;
-//   title: string;
-//   thumbnails: string[];
-// }
-
 const RentalCard = ({ ...props }) => {
   const { manufacturer, modelName, distance, thumbnails } = props;
   const [currentImagePosition, setCurrentImagePosition] = useState<number>(0);

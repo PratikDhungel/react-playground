@@ -4,9 +4,11 @@ import * as yup from 'yup';
 import { Button, Modal, Form, Col, Spinner } from 'react-bootstrap';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Loading from './Common/Loading';
+import { useRentalCardsContext } from '../Context/RentalDataContext';
 
 const apiBaseURL = `http://localhost:5000/api/v1/`;
 const addNewRentalEndpoint = `rentals/addNewRental`;
+const getAllRentalsEndpoint = `rentals/getAllRentals`;
 const imagesFolderPath = `images`;
 
 const defaultFormValues = {
@@ -26,6 +28,7 @@ const defaultFormStates = {
 
 const AddNewRentalModal = ({ ...props }) => {
   const { showNewRentalModal, setShowNewRentalModal } = props;
+  const { rentalData, setRentalData, cardsContainerStates, setCardContainerStates } = useRentalCardsContext();
   const [formStates, setFormStates] = useState(defaultFormStates);
   const { isLoading, isSuccess, isError } = formStates;
   const [newContainerHeight, setNewContainerHeight] = useState();
@@ -101,9 +104,17 @@ const AddNewRentalModal = ({ ...props }) => {
         },
         body: requestData,
       });
-      const responseBody = await apiResponse.json();
       reset({ defaultFormValues });
       setFormStates({ ...formStates, isLoading: false, isSuccess: true });
+      hideModal();
+
+      // This section will fetch the latest rentals after the addition of a new one
+      setCardContainerStates({ ...cardsContainerStates, isLoading: true });
+      const response = await fetch(`${apiBaseURL}${getAllRentalsEndpoint}`);
+      const responseBody = await response.json();
+      let responseData = responseBody.data;
+      setRentalData(responseData);
+      setCardContainerStates({ ...cardsContainerStates, isLoading: false });
     } catch (err) {
       setFormStates({ ...formStates, isLoading: false, isError: true });
       console.log(err);
