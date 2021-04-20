@@ -17,7 +17,7 @@ const CardsContainer = () => {
       const response = await fetch(`${apiBaseURL}${getAllRentalsEndpoint}`);
       const responseBody = await response.json();
       let responseData = responseBody.data;
-      // console.log(responseData);
+
       setRentalData(responseData);
       setCardContainerStates({ ...cardsContainerStates, isLoading: false });
     } catch (err) {
@@ -32,14 +32,21 @@ const CardsContainer = () => {
   return (
     <Container fluid className='cards-container'>
       {isLoading ? (
-        <Loading newContainerHeight={'500'}></Loading>
+        <Loading newContainerHeight='500'></Loading>
       ) : (
         <Row noGutters>
-          {rentalData.map((rental: any, index: number) => {
+          {rentalData?.map((rental: any, index: number) => {
             const { id, manufacturer, modelName, distance, vehicleImage1, vehicleImage2 } = rental;
             const thumbnails = [vehicleImage1, vehicleImage2];
             return (
-              <RentalCard id={id} manufacturer={manufacturer} modelName={modelName} thumbnails={thumbnails} key={index} />
+              <RentalCard
+                id={id}
+                manufacturer={manufacturer}
+                modelName={modelName}
+                distance={distance}
+                thumbnails={thumbnails}
+                key={index}
+              />
             );
           })}
         </Row>

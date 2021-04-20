@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { Col, Card } from 'react-bootstrap';
+import { FaChevronLeft, FaChevronRight, FaIndustry, FaMotorcycle, FaRoad } from 'react-icons/fa';
+import { Row, Col, Card } from 'react-bootstrap';
 
 const RentalCard = ({ ...props }) => {
   const { manufacturer, modelName, distance, thumbnails } = props;
@@ -27,9 +27,22 @@ const RentalCard = ({ ...props }) => {
           );
         })}
         <FaChevronRight className='arrow-btn arrow-btn__right' onClick={() => nextSlide()} />
-        <p>{manufacturer}</p>
-        <p>{modelName}</p>
-        <p>{distance}</p>
+        <div className='rental-card-details-container'>
+          <Row>
+            <Col className='icon-container' sm={4}>
+              <FaIndustry className='icons' />
+              <p className='detail-text'>{manufacturer}</p>
+            </Col>
+            <Col className='icon-container' sm={4}>
+              <FaMotorcycle className='icons' />
+              <p className='detail-text'>{modelName}</p>
+            </Col>
+            <Col className='icon-container' sm={4}>
+              <FaRoad className='icons' />
+              <p className='detail-text'>{distance} kms</p>
+            </Col>
+          </Row>
+        </div>
       </Card>
     </Col>
   );

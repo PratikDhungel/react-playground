@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import AddNewRentalModal from './AddNewRentalModal';
-import { Button, Modal } from 'react-bootstrap';
+import AddNewRentalModal from './NewRentalModal/AddNewRentalModal';
+import { Button } from 'react-bootstrap';
 
 const HomepageButtons = () => {
   const [showNewRentalModal, setShowNewRentalModal] = useState<boolean>(false);

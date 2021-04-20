@@ -3,6 +3,8 @@
 * {
   font-family: 'Newsreader', sans-serif;
   font-size: 16px;
+  /* padding: 0; */
+  /* margin: 0; */
 }
 
 body {
@@ -123,4 +125,24 @@ img {
   object-fit: cover;
   object-position: center;
   border-radius: 10px;
+}
+
+.rental-card-details-container {
+  margin-top: 1em;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.icons {
+  width: 2em;
+  height: 2em;
+  margin-right: 1em;
+}
+
+.detail-text {
+  margin: 0;
+  padding: 0;
 }

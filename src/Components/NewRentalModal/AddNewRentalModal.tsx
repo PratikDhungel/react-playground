@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
+
 import * as yup from 'yup';
-import { Button, Modal, Form, Col, Spinner } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
+import Loading from '../Common/Loading';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Loading from './Common/Loading';
-import { useRentalCardsContext } from '../Context/RentalDataContext';
+import { Button, Modal, Form, Col } from 'react-bootstrap';
+import { addNewRentalFormResolverShape } from './newRentalForm';
+import { useRentalCardsContext } from '../../Context/RentalDataContext';
 
 const apiBaseURL = `http://localhost:5000/api/v1/`;
 const addNewRentalEndpoint = `rentals/addNewRental`;
@@ -31,53 +33,11 @@ const AddNewRentalModal = ({ ...props }) => {
   const { rentalData, setRentalData, cardsContainerStates, setCardContainerStates } = useRentalCardsContext();
   const [formStates, setFormStates] = useState(defaultFormStates);
   const { isLoading, isSuccess, isError } = formStates;
-  const [newContainerHeight, setNewContainerHeight] = useState();
+  const [newContainerHeight, setNewContainerHeight] = useState<number>();
 
   const rentalFormRef = useRef<HTMLFormElement>(null);
 
-  const resolverScheme = yup.object().shape({
-    manufacturer: yup.string().required('Manufacturer is required'),
-    modelName: yup.string().required('Model Name is required'),
-    year: yup
-      .string()
-      .notRequired()
-      .test('Number only', 'Year should be a number', (value: any) => {
-        const numberRegex = /^\d*\.?\d*$/;
-        if (numberRegex.test(value)) {
-          return true;
-        }
-        return false;
-      })
-      .test('Year too old', 'Should be greater than 1950', (value: any) => {
-        const numValue = Number(value);
-        if (!value || numValue > 1950) {
-          return true;
-        }
-        return false;
-      }),
-    distance: yup
-      .string()
-      .required('Distance is required')
-      .test('Number only', 'Distance should be a number', (value: any) => {
-        const numberRegex = /^\d*\.?\d*$/;
-        if (numberRegex.test(value)) {
-          return true;
-        }
-        return false;
-      }),
-    vehicleImage1: yup.mixed().test('Empty', 'Image is required', (value: any) => {
-      if (value.length > 0) {
-        return true;
-      }
-      return false;
-    }),
-    vehicleImage2: yup.mixed().test('Empty', 'Image is required', (value: any) => {
-      if (value.length === 0) {
-        return false;
-      }
-      return true;
-    }),
-  });
+  const resolverScheme = yup.object().shape(addNewRentalFormResolverShape);
 
   const {
     register,
@@ -130,9 +90,8 @@ const AddNewRentalModal = ({ ...props }) => {
     reset(defaultFormValues);
   };
 
-  let formContainerHeight: any;
-
   const setContainerHeight = () => {
+    let formContainerHeight: number | undefined;
     formContainerHeight = rentalFormRef?.current?.getBoundingClientRect().height;
     setNewContainerHeight(formContainerHeight);
   };
@@ -153,9 +112,6 @@ const AddNewRentalModal = ({ ...props }) => {
       {isLoading ? (
         <Loading newContainerHeight={newContainerHeight} />
       ) : (
-        // <div className='spinner-container' style={{ height: `${newContainerHeight}px` }}>
-        //   <Spinner animation='border' />
-        // </div>
         <Form onSubmit={handleSubmit(submitNewRentalForm, handleErrors)} ref={rentalFormRef}>
           <Modal.Body>
             <Form.Row>
