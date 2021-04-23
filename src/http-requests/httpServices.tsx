@@ -1,6 +1,6 @@
 import axiosClient from './axios-client';
 
-const callGetMethod = async (endPoint: any, apiConfig: any) => {
+export const handleGetMethod = async (endPoint: any, apiConfig: any) => {
   try {
     const apiResponse = await axiosClient.get(endPoint, apiConfig);
     if (apiResponse.data && apiResponse.data.success) {
@@ -11,5 +11,3 @@ const callGetMethod = async (endPoint: any, apiConfig: any) => {
     throw err;
   }
 };
-
-export default callGetMethod;

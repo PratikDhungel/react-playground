@@ -3,10 +3,8 @@ import { Container, Row } from 'react-bootstrap';
 import Loading from '../Components/Common/Loading';
 import RentalCard from '../Components/RentalCard';
 import { useRentalCardsContext } from '../Context/RentalDataContext';
-import useGet from '../http-requests/useGet';
-
-const apiBaseURL = `http://localhost:5000/api/v1/`;
-const getAllRentalsEndpoint = `rentals/getAllRentals`;
+// import { useGet } from '../http-requests/useGet';
+import { fetchCardsData } from '../services/CardsContainer';
 
 const CardsContainer = () => {
   const { rentalData, setRentalData, cardsContainerStates, setCardContainerStates } = useRentalCardsContext();
@@ -15,14 +13,8 @@ const CardsContainer = () => {
   const fetchAvailableRentals = async () => {
     try {
       setCardContainerStates({ ...cardsContainerStates, isLoading: true });
-      // const response = await fetch(`${apiBaseURL}${getAllRentalsEndpoint}`);
-      // const responseBody = await response.json();
-      // let responseData = responseBody.data;
-
-      const responseObject = await useGet(`${apiBaseURL}${getAllRentalsEndpoint}`, {});
-      const responseData = responseObject.data;
-
-      setRentalData(responseData);
+      const rentalCardsData = await fetchCardsData();
+      setRentalData(rentalCardsData);
       setCardContainerStates({ ...cardsContainerStates, isLoading: false });
     } catch (err) {
       console.log(err);
