@@ -58,7 +58,7 @@ const AddNewRentalModal = ({ ...props }) => {
 
     try {
       setFormStates({ ...formStates, isLoading: true });
-      const postNewRentalResponseBody = addNewRentalData(requestData);
+      const postNewRentalResponseBody = await addNewRentalData(requestData);
       // const apiResponse = await fetch(`${apiBaseURL}${addNewRentalEndpoint}`, {
       //   method: 'POST',
       //   headers: {
@@ -183,7 +183,7 @@ const AddNewRentalModal = ({ ...props }) => {
                   id='vehicle-image-2'
                   {...register('vehicleImage2')}
                   isInvalid={!!errors.vehicleImage2}
-                  feedback={errors.vehicleImage1?.message}
+                  feedback={errors.vehicleImage2?.message}
                 />
                 <Form.Control.Feedback type='invalid'>{errors.vehicleImage2?.message}</Form.Control.Feedback>
               </Col>
