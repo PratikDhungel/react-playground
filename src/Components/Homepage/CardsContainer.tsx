@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
-import Loading from '../Components/Common/Loading';
-import RentalCard from '../Components/RentalCard';
-import { useRentalCardsContext } from '../Context/RentalDataContext';
+import Loading from '../Common/Loading';
+import RentalCard from '../Rental-Card/RentalCard';
+import { useRentalCardsContext } from '../../Context/RentalDataContext';
 // import { useGet } from '../http-requests/useGet';
-import { fetchCardsData } from '../services/CardsContainer';
+import { fetchCardsData } from '../../services/CardsContainer';
 
 const CardsContainer = () => {
   const { rentalData, setRentalData, cardsContainerStates, setCardContainerStates } = useRentalCardsContext();

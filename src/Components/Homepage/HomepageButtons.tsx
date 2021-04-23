@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AddNewRentalModal from './NewRentalModal/AddNewRentalModal';
+import AddNewRentalModal from '../NewRentalModal/AddNewRentalModal';
 import { Button } from 'react-bootstrap';
 
 const HomepageButtons = () => {
