@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
@@ -9,9 +9,6 @@ import { addNewRentalFormResolverShape } from './newRentalForm';
 import { useRentalCardsContext } from '../../Context/RentalDataContext';
 import { fetchAllRentalData, addNewRentalData } from '../../services/RentalDataServices';
 
-const apiBaseURL = `http://localhost:5000/api/v1/`;
-const addNewRentalEndpoint = `rentals/addNewRental`;
-const getAllRentalsEndpoint = `rentals/getAllRentals`;
 const imagesFolderPath = `images`;
 
 const defaultFormValues = {
@@ -59,23 +56,12 @@ const AddNewRentalModal = ({ ...props }) => {
     try {
       setFormStates({ ...formStates, isLoading: true });
       const postNewRentalResponseBody = await addNewRentalData(requestData);
-      // const apiResponse = await fetch(`${apiBaseURL}${addNewRentalEndpoint}`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: requestData,
-      // });
-      reset({ defaultFormValues });
       setFormStates({ ...formStates, isLoading: false, isSuccess: true });
+      setShowNewRentalModal(!showNewRentalModal);
 
       hideModal();
 
-      // This section will fetch the latest rentals after the addition of a new one
       setCardContainerStates({ ...cardsContainerStates, isLoading: true });
-      // const response = await fetch(`${apiBaseURL}${getAllRentalsEndpoint}`);
-      // const responseBody = await response.json();
-      // let responseData = responseBody.data;
       const rentalCardsData = await fetchAllRentalData();
       setRentalData(rentalCardsData);
       setCardContainerStates({ ...cardsContainerStates, isLoading: false });
@@ -106,7 +92,7 @@ const AddNewRentalModal = ({ ...props }) => {
       show={showNewRentalModal}
       keyboard={true}
       onEntered={() => assignLaderContainerHeight()}
-      onHide={() => hideModal()}
+      onHide={hideModal}
       centered
       // dialogClassName='homepage-filters-modal'
     >
