@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import Loading from '../Common/Loading';
 import RentalCard from '../Rental-Card/RentalCard';
 import { useRentalCardsContext } from '../../Context/RentalDataContext';
-// import { useGet } from '../http-requests/useGet';
-import { fetchCardsData } from '../../services/CardsContainer';
+import { fetchAllRentalData } from '../../services/RentalDataServices';
 
 const CardsContainer = () => {
   const { rentalData, setRentalData, cardsContainerStates, setCardContainerStates } = useRentalCardsContext();
@@ -13,7 +12,7 @@ const CardsContainer = () => {
   const fetchAvailableRentals = async () => {
     try {
       setCardContainerStates({ ...cardsContainerStates, isLoading: true });
-      const rentalCardsData = await fetchCardsData();
+      const rentalCardsData = await fetchAllRentalData();
       setRentalData(rentalCardsData);
       setCardContainerStates({ ...cardsContainerStates, isLoading: false });
     } catch (err) {

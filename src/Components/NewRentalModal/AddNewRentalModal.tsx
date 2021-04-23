@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Modal, Form, Col } from 'react-bootstrap';
 import { addNewRentalFormResolverShape } from './newRentalForm';
 import { useRentalCardsContext } from '../../Context/RentalDataContext';
+import { fetchAllRentalData, addNewRentalData } from '../../services/RentalDataServices';
 
 const apiBaseURL = `http://localhost:5000/api/v1/`;
 const addNewRentalEndpoint = `rentals/addNewRental`;
@@ -57,23 +58,26 @@ const AddNewRentalModal = ({ ...props }) => {
 
     try {
       setFormStates({ ...formStates, isLoading: true });
-      const apiResponse = await fetch(`${apiBaseURL}${addNewRentalEndpoint}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: requestData,
-      });
+      const postNewRentalResponseBody = addNewRentalData(requestData);
+      // const apiResponse = await fetch(`${apiBaseURL}${addNewRentalEndpoint}`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: requestData,
+      // });
       reset({ defaultFormValues });
       setFormStates({ ...formStates, isLoading: false, isSuccess: true });
+
       hideModal();
 
       // This section will fetch the latest rentals after the addition of a new one
       setCardContainerStates({ ...cardsContainerStates, isLoading: true });
-      const response = await fetch(`${apiBaseURL}${getAllRentalsEndpoint}`);
-      const responseBody = await response.json();
-      let responseData = responseBody.data;
-      setRentalData(responseData);
+      // const response = await fetch(`${apiBaseURL}${getAllRentalsEndpoint}`);
+      // const responseBody = await response.json();
+      // let responseData = responseBody.data;
+      const rentalCardsData = await fetchAllRentalData();
+      setRentalData(rentalCardsData);
       setCardContainerStates({ ...cardsContainerStates, isLoading: false });
     } catch (err) {
       setFormStates({ ...formStates, isLoading: false, isError: true });
