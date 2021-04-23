@@ -3,6 +3,7 @@ import { Container, Row } from 'react-bootstrap';
 import Loading from '../Components/Common/Loading';
 import RentalCard from '../Components/RentalCard';
 import { useRentalCardsContext } from '../Context/RentalDataContext';
+import useGet from '../http-requests/useGet';
 
 const apiBaseURL = `http://localhost:5000/api/v1/`;
 const getAllRentalsEndpoint = `rentals/getAllRentals`;
@@ -14,9 +15,12 @@ const CardsContainer = () => {
   const fetchAvailableRentals = async () => {
     try {
       setCardContainerStates({ ...cardsContainerStates, isLoading: true });
-      const response = await fetch(`${apiBaseURL}${getAllRentalsEndpoint}`);
-      const responseBody = await response.json();
-      let responseData = responseBody.data;
+      // const response = await fetch(`${apiBaseURL}${getAllRentalsEndpoint}`);
+      // const responseBody = await response.json();
+      // let responseData = responseBody.data;
+
+      const responseObject = await useGet(`${apiBaseURL}${getAllRentalsEndpoint}`, {});
+      const responseData = responseObject.data;
 
       setRentalData(responseData);
       setCardContainerStates({ ...cardsContainerStates, isLoading: false });
