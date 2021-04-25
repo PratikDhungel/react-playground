@@ -3,12 +3,12 @@ import { endpoints } from '../endpoints';
 
 export const fetchAllRentalData = async () => {
   const requestURL = `${endpoints.apiBaseURL}${endpoints.getAllRentalsEndpoint}`;
-  const responseObject = await handleGetMethod(requestURL, {});
-  return responseObject.data;
+  const apiResponse = await handleGetMethod(requestURL, {});
+  return apiResponse;
 };
 
 export const addNewRentalData = async (requestBody: Object) => {
   const requestURL = `${endpoints.apiBaseURL}${endpoints.addNewRentalEndpoint}`;
-  const responseObject = await handlePostMethod(requestURL, {}, requestBody);
-  return responseObject;
+  const responseBody = await handlePostMethod(requestURL, {}, requestBody);
+  return responseBody;
 };

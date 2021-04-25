@@ -62,9 +62,12 @@ const AddNewRentalModal = ({ ...props }) => {
       hideModal();
 
       setCardContainerStates({ ...cardsContainerStates, isLoading: true });
-      const rentalCardsData = await fetchAllRentalData();
-      setRentalData(rentalCardsData);
-      setCardContainerStates({ ...cardsContainerStates, isLoading: false });
+      const apiResponse = await fetchAllRentalData();
+      if (apiResponse.data && apiResponse.data.success) {
+        const responseData = apiResponse.data.data;
+        setRentalData(responseData);
+        setCardContainerStates({ ...cardsContainerStates, isLoading: false, isSuccess: true });
+      }
     } catch (err) {
       setFormStates({ ...formStates, isLoading: false, isError: true });
       console.log(err);

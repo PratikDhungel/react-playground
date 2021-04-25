@@ -4,6 +4,7 @@ import Loading from '../Common/Loading';
 import RentalCard from '../Rental-Card/RentalCard';
 import { useRentalCardsContext } from '../../Context/RentalDataContext';
 import { fetchAllRentalData } from '../../services/RentalDataServices';
+import { errorToast, successToast } from '../../utils/toast';
 
 const CardsContainer = () => {
   const { rentalData, setRentalData, cardsContainerStates, setCardContainerStates } = useRentalCardsContext();
@@ -12,13 +13,34 @@ const CardsContainer = () => {
   const fetchAvailableRentals = async () => {
     try {
       setCardContainerStates({ ...cardsContainerStates, isLoading: true });
-      const rentalCardsData = await fetchAllRentalData();
-      setRentalData(rentalCardsData);
-      setCardContainerStates({ ...cardsContainerStates, isLoading: false });
+      const apiResponse = await fetchAllRentalData();
+      if (apiResponse.data && apiResponse.data.success) {
+        const responseData = apiResponse.data.data;
+        setRentalData(responseData);
+        setCardContainerStates({ ...cardsContainerStates, isLoading: false, isSuccess: true });
+        successToast('Successfully fetched rental data');
+      }
     } catch (err) {
-      console.log(err);
+      setCardContainerStates({ ...cardsContainerStates, isLoading: false, isError: true });
+      errorToast('Error while fetching rental data');
     }
   };
+
+  // const throwError = () => {
+  //   if (isError) {
+  //     console.log('THROWING ERROR');
+  //     toast.error('Something went wrong', {
+  //       toastId: 'containers-error-toast',
+  //       position: 'bottom-left',
+  //       autoClose: 5000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //     });
+  //   }
+  // };
 
   useEffect(() => {
     fetchAvailableRentals();
