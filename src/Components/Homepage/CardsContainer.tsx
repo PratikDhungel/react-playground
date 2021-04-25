@@ -26,22 +26,6 @@ const CardsContainer = () => {
     }
   };
 
-  // const throwError = () => {
-  //   if (isError) {
-  //     console.log('THROWING ERROR');
-  //     toast.error('Something went wrong', {
-  //       toastId: 'containers-error-toast',
-  //       position: 'bottom-left',
-  //       autoClose: 5000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //     });
-  //   }
-  // };
-
   useEffect(() => {
     fetchAvailableRentals();
   }, []);

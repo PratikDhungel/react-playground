@@ -1,10 +1,11 @@
 import React, { useRef, useState } from 'react';
 
 import * as yup from 'yup';
-import { useForm } from 'react-hook-form';
 import Loading from '../Common/Loading';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Modal, Form, Col } from 'react-bootstrap';
+import { errorToast, successToast } from '../../utils/toast';
 import { addNewRentalFormResolverShape } from './newRentalForm';
 import { useRentalCardsContext } from '../../Context/RentalDataContext';
 import { fetchAllRentalData, addNewRentalData } from '../../services/RentalDataServices';
@@ -57,6 +58,7 @@ const AddNewRentalModal = ({ ...props }) => {
       setFormStates({ ...formStates, isLoading: true });
       const postNewRentalResponseBody = await addNewRentalData(requestData);
       setFormStates({ ...formStates, isLoading: false, isSuccess: true });
+      successToast('Successfully added new rental');
       setShowNewRentalModal(!showNewRentalModal);
 
       hideModal();
@@ -70,6 +72,7 @@ const AddNewRentalModal = ({ ...props }) => {
       }
     } catch (err) {
       setFormStates({ ...formStates, isLoading: false, isError: true });
+      errorToast('Error while adding new rental');
       console.log(err);
     }
   };
