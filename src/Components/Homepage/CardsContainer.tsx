@@ -18,7 +18,7 @@ const CardsContainer = () => {
         const responseData = apiResponse.data.data;
         setRentalData(responseData);
         setCardContainerStates({ ...cardsContainerStates, isLoading: false, isSuccess: true });
-        successToast('Successfully fetched rental data');
+        // successToast('Successfully fetched rental data');
       }
     } catch (err) {
       setCardContainerStates({ ...cardsContainerStates, isLoading: false, isError: true });
