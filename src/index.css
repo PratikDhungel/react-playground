@@ -19,6 +19,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+h2 {
+  margin-bottom: 0 !important;
+}
+
 .multi-select {
   width: 50%;
 }
@@ -145,4 +149,68 @@ img {
 .detail-text {
   margin: 0;
   padding: 0;
+}
+
+.login-container {
+  background: url('./assets/images/atlanta.jpg') center top;
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+  padding-top: 20vh;
+}
+
+.login-form {
+  background: white;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  min-width: 350px;
+  border-radius: 18px;
+}
+
+.login-form__title {
+  background-color: #343a40;
+  color: white;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 18px 18px 0 0;
+}
+
+.login-form__form-title {
+  display: inline-block;
+  border-bottom: 1px solid #343a40;
+  margin-bottom: 1.5em;
+  padding-bottom: 0.25em;
+}
+
+.login-form__row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.login-form__input {
+  padding: none !important;
+  margin: 0 1.25em;
+  margin-bottom: 1em;
+}
+
+.field-title {
+  font-size: 1.25rem !important;
+  margin-bottom: 0.5em !important;
+  padding-left: 1.25rem;
+}
+
+.btn-container {
+  text-align: center;
+}
+
+.login-btn {
+  font-size: 1.25rem !important;
+  margin-bottom: 1.5em;
+}
+
+.login-form_error {
+  font-size: 0.8rem !important;
+  text-align: initial;
+  padding-left: 1.25rem;
 }

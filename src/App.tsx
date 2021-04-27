@@ -4,17 +4,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import CardsContainer from './Components/Homepage/CardsContainer';
 import HomepageButtons from './Components/Homepage/HomepageButtons';
 import { RentalCardsContextProvider } from './Context/RentalDataContext';
-// import ReactSelect from './React-Select/ReactSelect';
+import Login from '../src/Components/auth/Login';
 
 function App() {
   return (
     <div className='App'>
       {/* <ReactSelect /> */}
       <NavBar />
-      <RentalCardsContextProvider>
-        <HomepageButtons />
-        <CardsContainer />
-      </RentalCardsContextProvider>
+      <Login />
+      {/* <RentalCardsContextProvider> */}
+      {/* <HomepageButtons /> */}
+      {/* <CardsContainer /> */}
+      {/* </RentalCardsContextProvider> */}
     </div>
   );
 }
