@@ -4,7 +4,7 @@ import Loading from '../Common/Loading';
 import RentalCard from '../Rental-Card/RentalCard';
 import { useRentalCardsContext } from '../../Context/RentalDataContext';
 import { fetchAllRentalData } from '../../services/RentalDataServices';
-import { errorToast, successToast } from '../../utils/toast';
+import { errorToast, successToast } from '../../utils/toast/toast';
 
 const CardsContainer = () => {
   const { rentalData, setRentalData, cardsContainerStates, setCardContainerStates } = useRentalCardsContext();

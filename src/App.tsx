@@ -10,12 +10,12 @@ function App() {
   return (
     <div className='App'>
       {/* <ReactSelect /> */}
-      <NavBar />
       <Login />
-      {/* <RentalCardsContextProvider> */}
-      {/* <HomepageButtons /> */}
-      {/* <CardsContainer /> */}
-      {/* </RentalCardsContextProvider> */}
+      {/* <NavBar />
+      <RentalCardsContextProvider>
+        <HomepageButtons />
+        <CardsContainer />
+      </RentalCardsContextProvider> */}
     </div>
   );
 }

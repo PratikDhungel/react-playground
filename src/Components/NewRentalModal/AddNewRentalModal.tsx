@@ -5,7 +5,7 @@ import Loading from '../Common/Loading';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Modal, Form, Col } from 'react-bootstrap';
-import { errorToast, successToast } from '../../utils/toast';
+import { errorToast, successToast } from '../../utils/toast/toast';
 import { addNewRentalFormResolverShape } from './newRentalForm';
 import { useRentalCardsContext } from '../../Context/RentalDataContext';
 import { fetchAllRentalData, addNewRentalData } from '../../services/RentalDataServices';
@@ -86,7 +86,7 @@ const AddNewRentalModal = ({ ...props }) => {
     reset(defaultFormValues);
   };
 
-  const assignLaderContainerHeight = () => {
+  const assignLoaderContainerHeight = () => {
     let formContainerHeight: number | undefined;
     formContainerHeight = rentalFormRef?.current?.getBoundingClientRect().height;
     setContainerHeight(formContainerHeight);
@@ -97,7 +97,7 @@ const AddNewRentalModal = ({ ...props }) => {
       size='lg'
       show={showNewRentalModal}
       keyboard={true}
-      onEntered={() => assignLaderContainerHeight()}
+      onEntered={() => assignLoaderContainerHeight()}
       onHide={hideModal}
       centered
       // dialogClassName='homepage-filters-modal'

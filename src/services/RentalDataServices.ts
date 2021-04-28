@@ -1,5 +1,5 @@
 import { handleGetMethod, handlePostMethod } from '../http-requests/httpServices';
-import { endpoints } from '../endpoints';
+import { endpoints } from '../constants/endpoints';
 
 export const fetchAllRentalData = async () => {
   const requestURL = `${endpoints.apiBaseURL}${endpoints.getAllRentalsEndpoint}`;
