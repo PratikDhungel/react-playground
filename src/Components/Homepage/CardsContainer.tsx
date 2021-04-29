@@ -5,6 +5,8 @@ import RentalCard from '../Rental-Card/RentalCard';
 import { useRentalCardsContext } from '../../Context/RentalDataContext';
 import { fetchAllRentalData } from '../../services/RentalDataServices';
 import { errorToast, successToast } from '../../utils/toast/toast';
+import HomepageButtons from './HomepageButtons';
+import NavBar from '../../NavBar/NavBar';
 
 const CardsContainer = () => {
   const { rentalData, setRentalData, cardsContainerStates, setCardContainerStates } = useRentalCardsContext();
@@ -31,28 +33,32 @@ const CardsContainer = () => {
   }, []);
 
   return (
-    <Container fluid className='cards-container'>
-      {isLoading ? (
-        <Loading newContainerHeight='500'></Loading>
-      ) : (
-        <Row noGutters>
-          {rentalData?.map((rental: any, index: number) => {
-            const { id, manufacturer, modelName, distance, vehicleImage1, vehicleImage2 } = rental;
-            const thumbnails = [vehicleImage1, vehicleImage2];
-            return (
-              <RentalCard
-                id={id}
-                manufacturer={manufacturer}
-                modelName={modelName}
-                distance={distance}
-                thumbnails={thumbnails}
-                key={index}
-              />
-            );
-          })}
-        </Row>
-      )}
-    </Container>
+    <div>
+      <NavBar />
+      <HomepageButtons />
+      <Container fluid className='cards-container'>
+        {isLoading ? (
+          <Loading newContainerHeight='500'></Loading>
+        ) : (
+          <Row noGutters>
+            {rentalData?.map((rental: any, index: number) => {
+              const { id, manufacturer, modelName, distance, vehicleImage1, vehicleImage2 } = rental;
+              const thumbnails = [vehicleImage1, vehicleImage2];
+              return (
+                <RentalCard
+                  id={id}
+                  manufacturer={manufacturer}
+                  modelName={modelName}
+                  distance={distance}
+                  thumbnails={thumbnails}
+                  key={index}
+                />
+              );
+            })}
+          </Row>
+        )}
+      </Container>
+    </div>
   );
 };
 

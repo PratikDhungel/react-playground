@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import * as yup from 'yup';
+import { Redirect } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { Form, Button } from 'react-bootstrap';
 import { loginFormResolverShape } from './loginForm';
@@ -25,7 +26,7 @@ const initialFormState: ILoginFormStates = {
 
 const Login = () => {
   const [loginFormStates, setLoginFormStates] = useState<ILoginFormStates>(initialFormState);
-  const { isLoading } = loginFormStates;
+  const { isSuccess, isLoading } = loginFormStates;
   const [containerHeight, setContainerHeight] = useState<number>();
 
   const formFieldsContainerRef = useRef<HTMLDivElement>(null);
@@ -49,12 +50,17 @@ const Login = () => {
       setLoginFormStates({ isLoading: false, isSuccess: false, isError: true });
       const errorMessage = err.response.data.error;
       errorToast(errorMessage);
-      // console.log(err.response);
     }
   };
 
   const handleErrors = (errors: any) => {
     console.log(errors);
+  };
+
+  const redirectUser = () => {
+    if (isSuccess) {
+      return <Redirect to='/' />;
+    }
   };
 
   useEffect(() => {
@@ -109,6 +115,7 @@ const Login = () => {
           </div>
         )}
       </Form>
+      {redirectUser()}
     </div>
   );
 };
