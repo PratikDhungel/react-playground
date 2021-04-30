@@ -24,7 +24,8 @@ const CardsContainer = () => {
       }
     } catch (err) {
       setCardContainerStates({ ...cardsContainerStates, isLoading: false, isError: true });
-      errorToast('Error while fetching rental data');
+      const errorMessage = err.response.data.error;
+      errorToast(errorMessage);
     }
   };
 
