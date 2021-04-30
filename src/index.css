@@ -87,9 +87,9 @@ h2 {
   padding-left: 0 !important;
 }
 
-.columns:last-of-type {
+/* .columns:last-of-type {
   padding-right: 0 !important;
-}
+} */
 
 .close > span {
   font-size: 1.25em;

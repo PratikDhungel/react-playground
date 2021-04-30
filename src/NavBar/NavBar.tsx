@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
+import { logoutUser } from '../utils/auth/logout';
+
 const NavBar = () => {
-  const [collapsed, setCollapsed] = useState(true);
-
-  const toggleNavbar = () => setCollapsed(!collapsed);
-
   return (
     <Navbar collapseOnSelect expand='md' bg='dark' variant='dark' className='nav-container'>
       <Navbar.Brand href='#home'>Rent Out</Navbar.Brand>
@@ -26,7 +24,7 @@ const NavBar = () => {
               Settings
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href='' className='nav-links-spacing nav-links-styling'>
+            <NavDropdown.Item href='' className='nav-links-spacing nav-links-styling' onClick={() => logoutUser()}>
               Logout
             </NavDropdown.Item>
           </NavDropdown>
