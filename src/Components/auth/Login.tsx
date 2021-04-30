@@ -79,7 +79,7 @@ const Login = () => {
           <h3>Login</h3>
         </div>
         {isLoading ? (
-          <Loading />
+          <Loading containerHeight={containerHeight} />
         ) : (
           <div ref={formFieldsContainerRef}>
             <Form.Row className='login-form__row'>

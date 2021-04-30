@@ -16,10 +16,10 @@ const NavBar = () => {
           <Nav.Link href='' className='nav-links-spacing nav-links-styling'>
             Home
           </Nav.Link>
-          <Nav.Link href='#pricing' className='nav-links-spacing nav-links-styling'>
+          <Nav.Link href='' className='nav-links-spacing nav-links-styling'>
             My Rentals
           </Nav.Link>
-          <Nav.Link href='#deets' className='nav-links-spacing nav-links-styling'>
+          <Nav.Link href='' className='nav-links-spacing nav-links-styling'>
             Account
           </Nav.Link>
         </Nav>
