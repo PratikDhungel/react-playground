@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { FaChevronLeft, FaChevronRight, FaIndustry, FaMotorcycle, FaRoad } from 'react-icons/fa';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const RentalCard = ({ ...props }) => {
-  const { manufacturer, modelName, distance, thumbnails } = props;
+  const { id, manufacturer, modelName, distance, thumbnails } = props;
   const [currentImagePosition, setCurrentImagePosition] = useState<number>(0);
   const lengthOfSlides: number = thumbnails.length;
 
@@ -38,6 +39,9 @@ const RentalCard = ({ ...props }) => {
             <Col className='icon-container' sm={4}>
               <p className='detail-text'>{distance} kms</p>
             </Col>
+          </Row>
+          <Row style={{ marginLeft: 0 }}>
+            <Link to={`/rental/${id}`}>View Details</Link>
           </Row>
         </div>
       </Card>
