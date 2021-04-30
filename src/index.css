@@ -33,7 +33,7 @@ h2 {
 }
 
 .nav-container {
-  padding: 0.5em 7em 0.5em 6em !important;
+  padding: 0.5em 6em !important;
 }
 
 .nav-link {
@@ -82,14 +82,13 @@ h2 {
 }
 
 .columns {
-  /* border: 1px solid red; */
   padding: 1em !important;
   padding-left: 0 !important;
 }
 
-/* .columns:last-of-type {
+.columns:nth-child(3n) {
   padding-right: 0 !important;
-} */
+}
 
 .close > span {
   font-size: 1.25em;
