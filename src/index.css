@@ -33,12 +33,16 @@ h2 {
 }
 
 .nav-container {
-  padding: 0.5em 6em !important;
+  padding: 0.5em 7em 0.5em 6em !important;
+}
+
+.nav-link {
+  padding: 1em 0 !important;
+  color: white !important;
 }
 
 .nav-links-spacing {
   margin: 0 auto !important;
-  padding: 0 !important;
 }
 
 .nav-links-styling {
@@ -46,19 +50,35 @@ h2 {
   color: white !important;
 }
 
-.homepage-buttons-container {
-  padding: 0.5em 2em !important;
-  padding-top: 2em !important;
-  padding-left: 6em !important;
+.dropdown {
+  margin: 0 auto !important;
+}
+
+.dropdown-menu {
+  background-color: #343a40 !important;
+}
+
+.dropdown-item:hover {
+  background-color: #6c757d !important;
 }
 
 @media (min-width: 768px) {
   .nav-links-spacing {
     margin-right: 3em !important;
   }
-  .nav-links-spacing:last-of-type {
-    margin-right: 0 !important;
+  /* .nav-links-spacing:last-of-type { */
+  /* margin-right: 0 !important; */
+  /* } */
+
+  .nav-link {
+    padding: 0 !important;
   }
+}
+
+.homepage-buttons-container {
+  padding: 0.5em 2em !important;
+  padding-top: 2em !important;
+  padding-left: 6em !important;
 }
 
 .columns {

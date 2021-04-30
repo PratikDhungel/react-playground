@@ -24,10 +24,11 @@ const initialFormState: ILoginFormStates = {
   isLoading: false,
 };
 
+let containerHeight: number | undefined;
+
 const Login = () => {
   const [loginFormStates, setLoginFormStates] = useState<ILoginFormStates>(initialFormState);
   const { isSuccess, isLoading } = loginFormStates;
-  const [containerHeight, setContainerHeight] = useState<number>();
 
   const formFieldsContainerRef = useRef<HTMLDivElement>(null);
 
@@ -66,7 +67,7 @@ const Login = () => {
   useEffect(() => {
     let formContainerHeight: number | undefined;
     formContainerHeight = formFieldsContainerRef?.current?.getBoundingClientRect().height;
-    setContainerHeight(formContainerHeight);
+    containerHeight = formContainerHeight;
   }, []);
 
   return (

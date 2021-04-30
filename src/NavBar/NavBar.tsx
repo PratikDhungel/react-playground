@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-// import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 const NavBar = () => {
   const [collapsed, setCollapsed] = useState(true);
@@ -19,9 +18,18 @@ const NavBar = () => {
           <Nav.Link href='' className='nav-links-spacing nav-links-styling'>
             My Rentals
           </Nav.Link>
-          <Nav.Link href='' className='nav-links-spacing nav-links-styling'>
-            Account
-          </Nav.Link>
+          <NavDropdown title='Daniel Plainview' id='user-profile-dropdown'>
+            <NavDropdown.Item href='' className='nav-links-spacing nav-links-styling'>
+              Account
+            </NavDropdown.Item>
+            <NavDropdown.Item href='' className='nav-links-spacing nav-links-styling'>
+              Settings
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href='' className='nav-links-spacing nav-links-styling'>
+              Logout
+            </NavDropdown.Item>
+          </NavDropdown>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
