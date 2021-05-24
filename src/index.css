@@ -50,6 +50,10 @@ h2 {
   color: white !important;
 }
 
+.nav-links-styling:hover {
+  text-decoration: none;
+}
+
 .dropdown {
   margin: 0 auto !important;
 }

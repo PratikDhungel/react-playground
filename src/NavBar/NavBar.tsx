@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import { logoutUser } from '../utils/auth/logout';
 
@@ -13,8 +14,10 @@ const NavBar = () => {
           <Nav.Link href='' className='nav-links-spacing nav-links-styling'>
             Home
           </Nav.Link>
-          <Nav.Link href='' className='nav-links-spacing nav-links-styling'>
-            My Rentals
+          <Nav.Link href='' className='nav-links-spacing'>
+            <Link to={'/my-rentals'} className='nav-links-styling'>
+              My Rentals
+            </Link>
           </Nav.Link>
           <NavDropdown title='Daniel Plainview' id='user-profile-dropdown'>
             <NavDropdown.Item href='' className='nav-links-spacing nav-links-styling'>

@@ -7,6 +7,7 @@ import { isAuthenticated } from '../utils/auth/authentication';
 import { RentalCardsContextProvider } from '../Context/RentalDataContext';
 
 import RentalPage from '../Components/rental-page/RentalPage';
+import MyRentals from '../Components/MyRentals/MyRentals';
 import CardsContainer from '../Components/Homepage/CardsContainer';
 
 const AppRouter = (): any => {
@@ -16,6 +17,7 @@ const AppRouter = (): any => {
         <Switch>
           <PrivateRoute exact path='/' component={CardsContainer} />
           <PrivateRoute path='/rental/:id' component={RentalPage} />
+          <PrivateRoute path='/my-rentals' component={MyRentals} />
           <Route exact path='/login' render={(props) => (!isAuthenticated() ? <Login /> : <Redirect to='/' />)}></Route>
           <Route exact path='*'>
             <h1 style={{ color: 'black' }}>404 NOT FOUND</h1>
