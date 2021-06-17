@@ -19,6 +19,11 @@ const NavBar = () => {
               My Rentals
             </Link>
           </Nav.Link>
+          <Nav.Link href='' className='nav-links-spacing'>
+            <Link to={'/infinite-scrolling'} className='nav-links-styling'>
+              Infinite Scrolling
+            </Link>
+          </Nav.Link>
           <NavDropdown title='Daniel Plainview' id='user-profile-dropdown'>
             <NavDropdown.Item href='' className='nav-links-spacing nav-links-styling'>
               Account

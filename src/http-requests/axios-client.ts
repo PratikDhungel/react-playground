@@ -9,14 +9,14 @@ const axiosClient = axios.create({
   },
 });
 
-axiosClient.interceptors.response.use(undefined, (error) => {
-  console.log('Interceptor');
-  if (error.response.status === 403) {
-    setTimeout(() => {
-      logoutUser();
-    }, 1000);
-  }
-  return Promise.reject(error);
-});
+// axiosClient.interceptors.response.use(undefined, (error) => {
+//   console.log('Interceptor');
+//   if (error.response.status === 403) {
+//     setTimeout(() => {
+//       logoutUser();
+//     }, 1000);
+//   }
+//   return Promise.reject(error);
+// });
 
 export default axiosClient;
